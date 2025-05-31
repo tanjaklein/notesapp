@@ -21,6 +21,11 @@ import { getUrl
 import { uploadData } from "aws-amplify/storage";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
+import { MapView } from "@aws-amplify/ui-react-geo"
+import '@aws-amplify/ui-react-geo/styles.css';
+
+import awsExports from './aws-exports';
+
 
 
 /**
@@ -28,6 +33,7 @@ import outputs from "../amplify_outputs.json";
  */
 
 Amplify.configure(outputs);
+Amplify.configure(awsExports);
 
 
 const client = generateClient({
@@ -98,8 +104,11 @@ export default function App() {
   }
 
   return (
+     <MapView />
+   /*
     <Authenticator>
       {({ signOut }) => (
+        
         <Flex
           className="App"
           justifyContent="center"
@@ -195,5 +204,6 @@ export default function App() {
         </Flex>
       )}
     </Authenticator>
+    */
   );
 }
