@@ -9,19 +9,27 @@ import {
   View,
   Image,
   Grid,
+
+  
   Divider,
+  
 } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
-import { getUrl } from "aws-amplify/storage";
+import { getUrl
+ } from "aws-amplify/storage";
 import { uploadData } from "aws-amplify/storage";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
+
+
 /**
  * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
  */
 
 Amplify.configure(outputs);
+
+
 const client = generateClient({
   authMode: "userPool",
 });
@@ -35,6 +43,7 @@ export default function App() {
 
   async function fetchNotes() {
     const { data: notes } = await client.models.Note.list();
+    
     await Promise.all(
       notes.map(async (note) => {
         if (note.image) {
@@ -107,6 +116,9 @@ export default function App() {
               gap="2rem"
               padding="2rem"
             >
+              <TextField placeholder="">
+                
+              </TextField>
               <TextField
                 name="name"
                 placeholder="Note Name"
@@ -177,6 +189,8 @@ export default function App() {
               </Flex>
             ))}
           </Grid>
+           <Divider />
+          <Heading level={2}>Tanja Crap</Heading>
           <Button onClick={signOut}>Sign Out</Button>
         </Flex>
       )}
